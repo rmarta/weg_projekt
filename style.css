@@ -1,0 +1,47 @@
+.header {
+    background-color:green;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+.nav {
+    width:100px;
+    height:500px;
+    float:left;
+    background-color:#bdf594;
+    color:black;
+    padding:5px;
+    line-height:30px;
+}
+.section {
+    float:left;
+    padding:10px;
+}
+
+.map-title {
+    width:700px;
+    height:50px;
+    padding:5px;
+}
+
+.map-canvas {
+    width:60%;
+    height:60%;
+    float:left;
+    padding:5px;
+}
+
+.map-control {
+    width:300px;
+    height:400px;
+    float:left;
+    padding:5px;
+}
+
+.footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
