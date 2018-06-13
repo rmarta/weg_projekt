@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html> 
+<head>
+   <title>Mapa Marty</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<h1>To będzie najlepsza strona z mapą pod słońcem</h1>
+
+    <div id="map" class="map"></div>
+    <script>
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        }),
+          new ol.layer.Tile({
+            source: new ol.source.XYZ({
+              attributions: 'Tiles © <a href="https://tiles.arcgis.com/tiles/Sn2rF1ebQhL7rHbG/arcgis/rest/services/Rasztawicka_Sienczewska/MapServer">ArcGIS</a>',
+              url: 'https://tiles.arcgis.com/tiles/Sn2rF1ebQhL7rHbG/arcgis/rest/services/Rasztawicka_Sienczewska/MapServer/tile/{z}/{y}/{x}'
+            })
+          })
+        ],
+        view: new ol.View({
+          projection: 'EPSG:102100',
+          center: [2066592, 7253612],
+          zoom: 13
+        })
+      });
+    </script>
+
+
+</body>
+</html>
