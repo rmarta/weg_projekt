@@ -10,49 +10,69 @@
 	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-	<h1 class="header">To będzie najlepsza strona z mapą pod słońcem</h1>
 
-    <div>
+<div class="wrapper">
+    <header class="main-head">To będzie najlepsza strona z mapą pod słońcem</header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="">O nas</a></li>
+            <li><a href="">Nasza oferta</a></li>
+            <li><a href="">Kontakt</a></li>
+        </ul>
+    </nav>
+    <article class="content">
+                    <h1>Mapa Gdańska</h1>
+        <div id="map"></div>
+
+    </article>
+    <aside class="side">
+        <div>
         <input onclick="update_markers()" type="checkbox" id="osmCheckbox" name="osmCheckbox" checked>
         <label for="osmCheckbox">Widoczność OSM</label>
     </div>
+        <div>
+            <input onclick="update_markers()" type="checkbox" id="gdanskChekbox" name="gdanskChekbox" checked>
+            <label for="gdanskChekbox">Widoczność Gdańsk</label>
+        </div>
 
-    <div>
-        <input onclick="update_markers()" type="checkbox" id="gdanskChekbox" name="gdanskChekbox" checked>
-        <label for="gdanskChekbox">Widoczność Gdańsk</label>
-    </div>
+    </aside>
+    <div class="ad">Advertising</div>
+    <footer class="main-footer">Projekt nr 3 z przedmiotu Wstęp do geoinformatyki <br>
+        Rasztawicka Marta, Sieńczewska Katarzyna
+    </footer>
+</div>
 
-    <div id="map" class="map-canvas"></div>
+
     <script>
-      var osmLayer = new ol.layer.Tile({
-          source: new ol.source.OSM()
-      });
+        var osmLayer = new ol.layer.Tile({
+            source: new ol.source.OSM()
+        });
 
-      var gdanskLayer = new ol.layer.Tile({
-          source: new ol.source.XYZ({
-              attributions: 'Tiles © <a href="https://tiles.arcgis.com/tiles/Sn2rF1ebQhL7rHbG/arcgis/rest/services/Rasztawicka_Sienczewska/MapServer">ArcGIS</a>',
-              url: 'https://tiles.arcgis.com/tiles/Sn2rF1ebQhL7rHbG/arcgis/rest/services/Rasztawicka_Sienczewska/MapServer/tile/{z}/{y}/{x}'
-          })
-      });
+        var gdanskLayer = new ol.layer.Tile({
+            source: new ol.source.XYZ({
+                attributions: 'Tiles © <a href="https://tiles.arcgis.com/tiles/Sn2rF1ebQhL7rHbG/arcgis/rest/services/Rasztawicka_Sienczewska/MapServer">ArcGIS</a>',
+                url: 'https://tiles.arcgis.com/tiles/Sn2rF1ebQhL7rHbG/arcgis/rest/services/Rasztawicka_Sienczewska/MapServer/tile/{z}/{y}/{x}'
+            })
+        });
 
-      var map = new ol.Map({
-        target: 'map',
-        layers: [osmLayer, gdanskLayer],
-        view: new ol.View({
-          projection: 'EPSG:102100',
-          center: [2066592, 7253612],
-          zoom: 13
-        })
-      });
+        var map = new ol.Map({
+            target: 'map',
+            layers: [osmLayer, gdanskLayer],
+            view: new ol.View({
+                projection: 'EPSG:102100',
+                center: [2066592, 7253612],
+                zoom: 13
+            })
+        });
 
 
-      function update_markers() {
-          var gdanskStatus = document.getElementById("gdanskChekbox").checked;
-          gdanskLayer.setVisible(gdanskStatus);
+        function update_markers() {
+            var gdanskStatus = document.getElementById("gdanskChekbox").checked;
+            gdanskLayer.setVisible(gdanskStatus);
 
-          var osmStatus = document.getElementById("osmCheckbox").checked;
-          osmLayer.setVisible(osmStatus);
-      }
+            var osmStatus = document.getElementById("osmCheckbox").checked;
+            osmLayer.setVisible(osmStatus);
+        }
 
     </script>
 
