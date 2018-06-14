@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mapa Marty</title>
+    <title>Mapa Marty i Kasi</title>
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
     <link rel="stylesheet" href="style.css" type="text/css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
@@ -12,7 +12,7 @@
 <body>
 
 <div class="wrapper">
-    <header class="main-head">To będzie najlepsza strona z mapą pod słońcem</header>
+    <header class="main-head">Baza hotelowa w Gdańsku</header>
     <nav class="main-nav">
         <ul>
             <li><a href="">O nas</a></li>
@@ -29,11 +29,15 @@
     <aside class="side">
         <div>
             <input onclick="update_markers()" type="checkbox" id="osmCheckbox" name="osmCheckbox" checked>
-            <label for="osmCheckbox">Widoczność OSM</label>
+            <label for="osmCheckbox">Mapa OSM</label>
         </div>
         <div>
             <input onclick="update_markers()" type="checkbox" id="gdanskChekbox" name="gdanskChekbox" checked>
-            <label for="gdanskChekbox">Widoczność Gdańsk</label>
+            <label for="gdanskChekbox">Drogi</label>
+        </div>
+        <div>
+            <input onclick="update_markers()" type="checkbox" id="hotelCheckbox" name="hotelCheckbox" checked>
+            <label for="hotelCheckbox">Hotele</label>
         </div>
 
     </aside>
@@ -44,6 +48,52 @@
 
 
 <script>
+
+    var coords = [
+        [2066592, 7253612],
+        [2066000, 7253100],
+        [2065599, 7254900],
+        [2066900, 7252000],
+        [2068900, 7250000],
+        [2068900, 7252700]
+    ];
+
+    var iconFeatures = [];
+    for (i = 0; i < coords.length; i++) {
+        var icon = new ol.Feature({
+            geometry: new ol.geom.Point(coords[i]),
+            name: 'Hotel',
+        });
+        iconFeatures.push(icon);
+    }
+
+
+    var iconStyle = new ol.style.Style({
+        image: new ol.style.Icon( ({
+            anchor: [0.5, 46],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            opacity: 1,
+            src: 'icon.png',
+            scale: 0.17
+            // https://openlayers.org/en/v4.6.5/examples/data/icon.png
+        }))
+    });
+
+    for (i = 0; i < iconFeatures.length; i++) {
+        iconFeatures[i].setStyle(iconStyle);
+    }
+
+    var vectorSource = new ol.source.Vector({
+        features: iconFeatures
+    });
+
+    var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+    });
+
+
+
     var osmLayer = new ol.layer.Tile({
         source: new ol.source.OSM()
     });
@@ -57,7 +107,7 @@
 
     var map = new ol.Map({
         target: 'map',
-        layers: [osmLayer, gdanskLayer],
+        layers: [osmLayer, gdanskLayer, vectorLayer],
         view: new ol.View({
             projection: 'EPSG:102100',
             center: [2066592, 7253612],
@@ -72,6 +122,9 @@
 
         var osmStatus = document.getElementById("osmCheckbox").checked;
         osmLayer.setVisible(osmStatus);
+
+        var hotelStatus = document.getElementById("hotelCheckbox").checked;
+        vectorLayer.setVisible(hotelStatus);
     }
 
 </script>
