@@ -32,20 +32,25 @@ nav ul {
     padding:20px;
     font-size: xx-large;
 }
+.title {
+    margin-top: 0;
+}
 .content {
     grid-area: content;
+
 }
 .main-nav {
     grid-area: nav;
     background-color: #B8D1FF;
-            /*#6495ED;*/
+    font-size: 30px;
+    /*#6495ED;*/
 }
 .side {
     grid-area: sidebar;
+    padding-top: 150px;
+
 }
-.ad {
-    grid-area: ad;
-}
+
 .main-footer {
     grid-area: footer;
 }
@@ -80,10 +85,15 @@ nav ul {
         grid-template-areas:
                 "header header  header"
                 "nav    content sidebar"
-                "nav    content ad"
+                "nav    content sidebar"
                 "footer footer  footer"
     }
     nav ul {
         flex-direction: column;
+        padding: 10px;
+    }
+    nav li {
+        flex-direction: column;
+        padding: 10px;
     }
 }
