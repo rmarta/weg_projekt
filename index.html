@@ -39,16 +39,13 @@
             <input onclick="update_markers()" type="checkbox" id="hotelCheckbox" name="hotelCheckbox" checked>
             <label for="hotelCheckbox">Hotele</label>
         </div>
-
     </aside>
-    <footer class="main-footer">Projekt nr 3 z przedmiotu Wstęp do geoinformatyki <br>
+    <footer class="main-footer">Projekt nr 3 z przedmiotu Wybrane elementy geoinformatyki <br>
         Rasztawicka Marta, Sieńczewska Katarzyna
     </footer>
 </div>
 
-
 <script>
-
     var coords = [
         [2066592, 7253612],
         [2066000, 7253100],
@@ -66,7 +63,6 @@
         });
         iconFeatures.push(icon);
     }
-
 
     var iconStyle = new ol.style.Style({
         image: new ol.style.Icon( ({
@@ -92,8 +88,6 @@
         source: vectorSource
     });
 
-
-
     var osmLayer = new ol.layer.Tile({
         source: new ol.source.OSM()
     });
@@ -115,7 +109,6 @@
         })
     });
 
-
     function update_markers() {
         var gdanskStatus = document.getElementById("gdanskChekbox").checked;
         gdanskLayer.setVisible(gdanskStatus);
@@ -126,9 +119,6 @@
         var hotelStatus = document.getElementById("hotelCheckbox").checked;
         vectorLayer.setVisible(hotelStatus);
     }
-
 </script>
-
-
 </body>
 </html>
